@@ -1,15 +1,15 @@
 {
   "displayName": "MOTION Blinds",
-  "name": "@ryanjerskine/homebridge-motionblinds",
-  "version": "2.0.7",
-  "description": "Homebridge plugin to control MOTION Blinds by Coulisse B.V. including derivative products such as OmniaBlinds.",
+  "name": "@monofin/homebridge-blocblinds",
+  "version": "2.0.8",
+  "description": "Homebridge plugin to control MOTION Blinds by Coulisse B.V. including derivative products such as OmniaBlinds and Bloc Blinds (UK).",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jhurliman/homebridge-motionblinds.git"
+    "url": "git://github.com/monofin/homebridge-blocblinds.git"
   },
   "bugs": {
-    "url": "https://github.com/jhurliman/homebridge-motionblinds/issues"
+    "url": "https://github.com/monofin/homebridge-blocblinds/issues"
   },
   "engines": {
     "node": ">=10.17.0",
