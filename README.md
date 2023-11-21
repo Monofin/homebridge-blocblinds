@@ -1,9 +1,9 @@
-# homebridge-motionblinds
+# homebridge-blocblinds
 
-[![npm](https://badgen.net/npm/v/homebridge-motionblinds)](https://www.npmjs.com/package/homebridge-motionblinds)
-[![npm](https://badgen.net/npm/dt/homebridge-motionblinds)](https://www.npmjs.com/package/homebridge-motionblinds)
+[![npm](https://badgen.net/npm/v/homebridge-blocblinds)](https://www.npmjs.com/package/homebridge-blocblinds)
+[![npm](https://badgen.net/npm/dt/homebridge-blocblinds)](https://www.npmjs.com/package/homebridge-blocblinds)
 
-Homebridge plugin to control MOTION Blinds by Coulisse B.V. including derivative products such as OmniaBlinds.
+Homebridge plugin to control MOTION Blinds by Coulisse B.V. including derivative products such as: OmniaBlinds, Bloc Blinds (UK).
 
 ## Installation
 1. Follow the step-by-step instructions on the [Homebridge Wiki](https://github.com/homebridge/homebridge/wiki) for how to install Homebridge.
