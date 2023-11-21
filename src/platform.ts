@@ -82,20 +82,18 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
       this.log.debug(
         `<- readAllDevices() found ${devices.length} devices, uuids=${[...newUUIDs].join(', ')}`,
       )
-
-      // Add newly discovered and previously discovered devices
-      for (const device of devices) {
-        this.maybeAddOrUpdateAccessory(device.mac, device.deviceType, device.data)
-      }
-
       // Remove previously discovered devices that no longer exist
       const removed = this.accessories.filter((a) => !newUUIDs.has(a.UUID))
       if (removed.length) {
-        this.log.warn(`Removing ${removed.length} accessories that are no longer present`)
+        this.log.warn(`Removing ${removed.length} accessories that are no longer present or invalid`)
         for (const accessory of removed) {
           this.accessories.splice(this.accessories.indexOf(accessory), 1)
         }
         this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, removed)
+      }
+      // Add newly discovered and previously discovered devices
+      for (const device of devices) {
+        this.maybeAddOrUpdateAccessory(device.mac, device.deviceType, device.data)
       }
     } catch (err) {
       this.log.error('Failed fetching list of Bloc Blinds:', err)
@@ -113,16 +111,25 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
 
     if (existingAccessory) {
       // the accessory already exists
-      this.log.info(`Restoring existing accessory from cache [${existingAccessory.displayName}], deviceType=${
+      this.log.info(`Validating existing accessory from cache [${existingAccessory.displayName}], deviceType=${
         DEVICE_TYPES[deviceType]}, status=${JSON.stringify(status)}`)
       existingAccessory.context.status = status
-      this.api.updatePlatformAccessories([existingAccessory])
+      // Strip out buggy invalid device types and gateways
+      if (!isValidDeviceType(deviceType)) {
+        this.log.error(`INVALID existing accessory from cache, removing [${existingAccessory.displayName}], deviceType=${
+          DEVICE_TYPES[deviceType]}, status=${JSON.stringify(status)}`)
+        this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, [existingAccessory])
+      } else {
+        this.log.info(`Valid existing accessory from cache, removing [${existingAccessory.displayName}], deviceType=${
+          DEVICE_TYPES[deviceType]}, status=${JSON.stringify(status)}`)
+        this.api.updatePlatformAccessories([existingAccessory])
+      }
       new MotionBlindsAccessory(this, existingAccessory)
     } else {
       this.log.info(
         `Found new accessory: mac=${mac}, uuid=${uuid}, deviceType=${
           DEVICE_TYPES[deviceType]}, status=${JSON.stringify(status)}`)
-      if (DEVICE_TYPES[deviceType] !== 'Gateway') {
+      if (isValidDeviceType(deviceType)) {
         this.log.info(
           `Adding new accessory: mac=${mac}, uuid=${uuid}, deviceType=${
             DEVICE_TYPES[deviceType]
@@ -130,7 +137,7 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
         )
         this.addAccessory(mac, uuid, deviceType, status)
       } else {
-        this.log.info(`Keeping ${DEVICE_TYPES[deviceType]} separate`)
+        this.log.info(`Not adding invalid device type: ${DEVICE_TYPES[deviceType]}`)
       }
     }
   }
@@ -160,4 +167,8 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
     this.log.info(`Handling report: mac=${report.mac} deviceType=${report.deviceType} status=${JSON.stringify(report.data)}`)
     this.maybeAddOrUpdateAccessory(report.mac, report.deviceType, report.data)
   }
+}
+
+function isValidDeviceType(deviceType: DeviceType) {
+  return (DEVICE_TYPES[deviceType] !== undefined && DEVICE_TYPES[deviceType] !== 'Gateway')
 }
