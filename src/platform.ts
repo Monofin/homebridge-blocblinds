@@ -103,7 +103,7 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
   }
 
   maybeAddOrUpdateAccessory(mac: string, deviceType: DeviceType, status: DeviceStatus) {
-    if (this.seenThisSession.has(mac) || mac === 'a4e57c2ca1e2') {
+    if (this.seenThisSession.has(mac)) {
       return
     }
     this.seenThisSession.add(mac)
