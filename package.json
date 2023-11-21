@@ -12,8 +12,8 @@
     "url": "https://github.com/monofin/homebridge-blocblinds/issues"
   },
   "engines": {
-    "node": ">=10.17.0",
-    "homebridge": ">=1.0.0"
+    "node": ">=20.0.0",
+    "homebridge": ">=1.7.0"
   },
   "main": "dist/index.js",
   "scripts": {
