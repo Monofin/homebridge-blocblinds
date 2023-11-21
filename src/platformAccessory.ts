@@ -46,7 +46,7 @@ export class MotionBlindsAccessory {
 
     this.accessory
       .getService(this.platform.Service.AccessoryInformation)!
-      .setCharacteristic(this.platform.Characteristic.Manufacturer, 'MOTION')
+      .setCharacteristic(this.platform.Characteristic.Manufacturer, 'Bloc')
       .setCharacteristic(this.platform.Characteristic.Model, BlindType[this.status.type])
       .setCharacteristic(this.platform.Characteristic.SerialNumber, this.mac)
 

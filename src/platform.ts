@@ -98,7 +98,7 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
         this.api.unregisterPlatformAccessories(PLUGIN_NAME, PLATFORM_NAME, removed)
       }
     } catch (err) {
-      this.log.error('Failed fetching list of MOTION Blinds:', err)
+      this.log.error('Failed fetching list of Bloc Blinds:', err)
     }
   }
 
@@ -113,7 +113,8 @@ export class MotionBlindsPlatform implements DynamicPlatformPlugin {
 
     if (existingAccessory) {
       // the accessory already exists
-      this.log.info(`Restoring existing accessory from cache [${existingAccessory.displayName}], status=${JSON.stringify(status)}`)
+      this.log.info(`Restoring existing accessory from cache [${existingAccessory.displayName}], deviceType=${
+        DEVICE_TYPES[deviceType]}, status=${JSON.stringify(status)}`)
       existingAccessory.context.status = status
       this.api.updatePlatformAccessories([existingAccessory])
       new MotionBlindsAccessory(this, existingAccessory)
