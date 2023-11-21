@@ -1,7 +1,7 @@
 {
   "displayName": "MOTION Blinds",
   "name": "@monofin/homebridge-blocblinds",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "Homebridge plugin to control MOTION Blinds by Coulisse B.V. including derivative products such as OmniaBlinds and Bloc Blinds (UK).",
   "license": "MIT",
   "repository": {
