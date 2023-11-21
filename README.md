@@ -5,6 +5,12 @@
 
 Homebridge plugin to control MOTION Blinds by Coulisse B.V. including derivative products such as: OmniaBlinds, Bloc Blinds (UK).
 
+Note: this is a fork of [Homebridge MOTION blinds](https://github.com/jhurliman/homebridge-motionblinds#homebridge-motionblinds) via another fork.
+This fork contains prototype fixes and some Bloc Blinds specific logic, including slightly different device type handling.
+It should be backwards compatible with MOTION blinds.
+Fixes here will be offered back to the original repo.
+
+
 ## Installation
 1. Follow the step-by-step instructions on the [Homebridge Wiki](https://github.com/homebridge/homebridge/wiki) for how to install Homebridge.
 2. Follow the step-by-step instructions on the [Homebridge Config UI X](https://github.com/oznu/homebridge-config-ui-x/wiki) for how to install Homebridge Config UI X.
