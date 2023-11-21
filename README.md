@@ -1,7 +1,7 @@
 # homebridge-blocblinds
 
-[![npm](https://badgen.net/npm/v/homebridge-blocblinds)](https://www.npmjs.com/package/homebridge-blocblinds)
-[![npm](https://badgen.net/npm/dt/homebridge-blocblinds)](https://www.npmjs.com/package/homebridge-blocblinds)
+[![npm](https://badgen.net/npm/v/homebridge-blocblinds)](https://www.npmjs.com/package/@monofin/homebridge-blocblinds)
+[![npm](https://badgen.net/npm/dt/homebridge-blocblinds)](https://www.npmjs.com/package/@monofin/homebridge-blocblinds)
 
 Homebridge plugin to control MOTION Blinds by Coulisse B.V. including derivative products such as: OmniaBlinds, Bloc Blinds (UK).
 
